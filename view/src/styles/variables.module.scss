@@ -1,0 +1,5 @@
+// 用于scss变量的导出，大部分用于vue文件中js中使用
+@import './constant.scss';
+:export {
+  fontLSize: $font-l-size;
+}
