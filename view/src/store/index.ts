@@ -12,7 +12,8 @@ export const useGlobalStore = defineStore('GlobalState',{
   // state: 返回对象的函数
   state: (): State => ({
     token: '',
-    userInfo: {}
+    userInfo: {},
+    theme: null
   }),
   getters: {},
   actions: {
