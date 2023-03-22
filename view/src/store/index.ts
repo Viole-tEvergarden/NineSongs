@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia';
 import { createPinia } from 'pinia';
 import piniaPersist from 'pinia-plugin-persist';
-
+import { themeSwitching } from "@/utils/themeSwitching";
 interface State {
   token: string,
-  userInfo: any
+  userInfo: any,
+  theme?: theme
 }
 // defineStore 调用后返回一个函数，调用该函数获得 Store 实体
 export const useGlobalStore = defineStore('GlobalState',{
@@ -21,6 +22,10 @@ export const useGlobalStore = defineStore('GlobalState',{
     },
     setUserIngo(userInfo: any) {
       this.userInfo = userInfo;
+    },
+    setTheme(theme: theme) {
+      this.theme = theme;
+      themeSwitching()
     }
   },
   // 持久化
