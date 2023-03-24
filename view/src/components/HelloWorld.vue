@@ -1,21 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useGlobalStore } from '@/store/index'
-defineProps<{ msg: string }>()
 const store = useGlobalStore()
-const count = ref(0);
-setTimeout(() => {
-  ElMessageBox
-}, 2000);
+
+const visibility = useDocumentVisibility();
+
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <!-- <h1>{{ visibility }}</h1> -->
 
-  <div class="card">
-    <button type="button" @click="store.setTheme(store.theme === 'light' ? 'dark' : 'light')">count is {{ count
-    }}</button>
-  </div>
+  <ElButton @click="store.setTheme(store.theme === 'light' ? 'dark' : 'light')">home</ElButton>
 </template>
 
 <style scoped>

@@ -5,19 +5,37 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
-// https://vitejs.dev/config/
+
 export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
       dts: 'src/types/auto-imports.d.ts', // 可以自定义文件生成的位置，默认是根目录下
-      imports: ['vue','vue-router','pinia'],
-      resolvers: [ElementPlusResolver()],
+      imports: ['vue', 'vue-router','@vueuse/core','pinia'],
+      resolvers: [
+        ElementPlusResolver(),
+        // 自动导入图标组件
+        IconsResolver({
+          prefix: 'Icon',
+        })
+      ],
+      vueTemplate: true, // 是否在 vue 模板中自动导入
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        ElementPlusResolver(), 
+        // 自动注册图标组件
+        IconsResolver({
+          enabledCollections: ['ep'], //@iconify-json/ep 是 Element Plus 的图标库
+        }),
+      ],
       dts: 'src/types/components.d.ts'
+    }),
+    Icons({
+      autoInstall: true,
     }),
   ],
   resolve: {

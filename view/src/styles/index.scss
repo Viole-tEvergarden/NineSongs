@@ -1,21 +1,31 @@
 @import './constant.scss';
 // 用于放置项目中自己封装的一些常用的样式，class类名，比如flex布局，定位，字体等等
 
-:root {
+:root{
+  --background-color: #111827;
+  --font-color: #fff;
+  --slider-backround: rgba(46, 46, 48, 1);
+  --hover-menu: rgb(72, 72, 73);
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: $dark-color;
-  background-color: $dark-background;
+  color: var(--font-color);
 
   font-synthesis: none; //浏览器可以合成（synthesize）哪些缺失的字体，粗体或斜体;none：不合成
   text-rendering: optimizeLegibility; //浏览器在绘制文本时将着重考虑易读性，而不是渲染速度和几何精度
+
+  
 }
 :root[theme=light] {
-  color: $light-color;
-  background-color: $light-background;
+  --background-color: #ffffff;
+  --font-color: rgba(60, 60, 67, 0.92);
+  --slider-backround: rgba(242,243,245,1);
+  --hover-menu: rgb(229, 230, 235);
+
+  color: --font-color;
 }
 
 a {
@@ -33,5 +43,11 @@ span{
   display: inline-block;
 }
 ul, li,ol,li {
-  list-style-type: none
+  list-style-type: none;
+  padding:0;
+  margin: 0
 };
+svg{
+  width: 1em;
+  height: 1em;
+}

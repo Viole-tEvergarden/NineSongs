@@ -15,7 +15,11 @@ export const useGlobalStore = defineStore('GlobalState',{
     userInfo: {},
     theme: null
   }),
-  getters: {},
+  getters: {
+    isdark(state){ //是否为暗色模式
+      return state.theme !== 'light'
+    }
+  },
   actions: {
     // 不使用箭头函数
     setToken(token: string) {

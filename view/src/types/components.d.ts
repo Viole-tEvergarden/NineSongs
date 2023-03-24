@@ -9,8 +9,16 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElImage: typeof import('element-plus/es')['ElImage']
     HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
+    IEpArrowRight: typeof import('~icons/ep/arrow-right')['default']
+    IEpEdit: typeof import('~icons/ep/edit')['default']
+    IEpHouse: typeof import('~icons/ep/house')['default']
+    Layout: typeof import('./../components/layout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Slider: typeof import('./../components/Slider.vue')['default']
   }
 }

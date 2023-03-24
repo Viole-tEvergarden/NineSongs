@@ -1,1 +1,1 @@
-# Vue 3 + TypeScript + Vite + Pinia + Sass
+# Vue 3 + TypeScript + Vite + Pinia + Sass + @vueuse/core
