@@ -5,6 +5,14 @@ interface associativeWord {
   text: string;
   key?: string;
 }
+// 歌单列表
+interface SongSheet {
+  singularTitle: string;
+  id: string;
+  author: string;
+  describe: string;
+  coverImage: string;
+}
 /**
    * 分页查询参数
    */

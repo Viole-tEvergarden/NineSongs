@@ -6,15 +6,15 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     component: layout,
     name: "index",
-    redirect: '/home',
+    redirect: '/Recommend',
     meta: {
-      title: "首页",
+      title: "推荐",
     },
     children: [
       {
-        path: '/home',
-        name: 'home',
-        component: () => import("@/components/HelloWorld.vue"),
+        path: '/Recommend',
+        name: 'Recommend',
+        component: () => import("@/pages/Recommend.vue"),
       }
     ],
   },

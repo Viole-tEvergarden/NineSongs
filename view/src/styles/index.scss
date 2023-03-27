@@ -1,6 +1,12 @@
 @import './constant.scss';
 // 用于放置项目中自己封装的一些常用的样式，class类名，比如flex布局，定位，字体等等
 
+/* 字体样式 */
+@font-face {
+  font-family: 'SmileySans';
+  src: url('../assets/font/SmileySans-Oblique.ttf')
+}
+
 :root {
   --background-color: #111827;
   --font-color: #fff;
@@ -10,6 +16,9 @@
   --hoverBgc: rgba(223, 223, 223, .08);// 按钮hover背景色
   --associativeWordFloatingBackgroundColor: rgba(255, 255, 255, .08);//联想词悬浮背景色
 
+
+  --SongSheetImgWidth: 150px;
+  --SliderWidth: 250px;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -20,8 +29,6 @@
 
   font-synthesis: none; //浏览器可以合成（synthesize）哪些缺失的字体，粗体或斜体;none：不合成
   text-rendering: optimizeLegibility; //浏览器在绘制文本时将着重考虑易读性，而不是渲染速度和几何精度
-
-
 }
 
 :root[theme=light] {
@@ -73,7 +80,7 @@ svg {
 // 滚动条样式
 *::-webkit-scrollbar {
   width: 4px;
-  // height: 10px; // 高度写不写，都不影响，因为会根据内容的长度自动计算
+  height: 4px; // 高度写不写，都不影响，因为会根据内容的长度自动计算
 }
 
 *::-webkit-scrollbar-thumb {
@@ -107,5 +114,9 @@ svg {
   .arrowBox {
     height: 32px;
     width: 32px;
+  }
+  :root{
+    --SliderWidth: 200px;
+    --SongSheetImgWidth: 100px;
   }
 }

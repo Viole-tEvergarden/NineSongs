@@ -8,7 +8,6 @@
     <div class="containerBox">
       <Header></Header>
       <main class="container">
-        主题
         <RouterView></RouterView>
       </main>
     </div>
@@ -26,20 +25,19 @@ import Header from "./Header.vue";
   width: 100vw;
   height: 100vh;
   .slider{
-    width: 250px;
+    width: var(--SliderWidth);
     flex-shrink: 0;
     background-color: var(--slider-backround);
     color: var(--font-color);
     padding-bottom: 100px;
   }
   .containerBox{
-    flex: 1;
+    // flex: 1;
+    width: calc(100vw - var(--SliderWidth));
     background-color: var(--background-color);
   }
-}
-@media (max-width: $meidiaWidth) {
-  .main .slider{
-    width: 200px;
+  .container{
+    padding: 1.25rem;
   }
 }
 </style>
