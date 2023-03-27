@@ -3,6 +3,20 @@ import { AxiosPromise } from 'axios';
 import { UserForm, UserInfo, UserPageVO, UserQuery } from './types';
 
 /**
+ * 百度联想搜索词
+ *
+ * @param value
+ */
+export function baiduSuggestion(value: string) {
+  console.log(value);
+  return request({
+    url: '/api/su?cb=queryList&wd=' + value,
+    method: 'get',
+  });
+}
+
+
+/**
  * 登录成功后获取用户信息（昵称、头像、权限集合和角色集合）
  */
 export function getUserInfo(): AxiosPromise<UserInfo> {
@@ -119,20 +133,6 @@ export function downloadTemplateApi() {
   });
 }
 
-/**
- * 导出用户
- *
- * @param queryParams
- * @returns
- */
-export function exportUser(queryParams: UserQuery) {
-  return request({
-    url: '/api/v1/users/_export',
-    method: 'get',
-    params: queryParams,
-    responseType: 'arraybuffer'
-  });
-}
 
 /**
  * 导入用户

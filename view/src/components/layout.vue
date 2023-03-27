@@ -6,7 +6,7 @@
     </div>
     <!-- 主题容器 -->
     <div class="containerBox">
-      <header>头部</header>
+      <Header></Header>
       <main class="container">
         主题
         <RouterView></RouterView>
@@ -17,6 +17,7 @@
 
 <script setup lang="ts">
 import Slider from "./Slider.vue";
+import Header from "./Header.vue";
 </script>
 
 <style lang="scss" scoped>

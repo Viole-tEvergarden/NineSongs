@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useGlobalStore } from '@/store/index'
-const store = useGlobalStore()
+
 
 const visibility = useDocumentVisibility();
 
@@ -9,7 +8,7 @@ const visibility = useDocumentVisibility();
 <template>
   <!-- <h1>{{ visibility }}</h1> -->
 
-  <ElButton @click="store.setTheme(store.theme === 'light' ? 'dark' : 'light')">home</ElButton>
+  <ElButton>home</ElButton>
 </template>
 
 <style scoped>

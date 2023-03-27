@@ -1,15 +1,19 @@
 @import './constant.scss';
 // 用于放置项目中自己封装的一些常用的样式，class类名，比如flex布局，定位，字体等等
 
-:root{
+:root {
   --background-color: #111827;
   --font-color: #fff;
-  --slider-backround: rgba(46, 46, 48, 1);
-  --hover-menu: rgb(72, 72, 73);
+  --font-size: 14px;
+  --slider-backround: rgba(46, 46, 48, 1);//侧边菜单背景色
+  --hover-menu: rgb(72, 72, 73);//悬浮菜单背景色
+  --hoverBgc: rgba(223, 223, 223, .08);// 按钮hover背景色
+  --associativeWordFloatingBackgroundColor: rgba(255, 255, 255, .08);//联想词悬浮背景色
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-size: var(--font-size);
 
   color-scheme: light dark;
   color: var(--font-color);
@@ -17,15 +21,19 @@
   font-synthesis: none; //浏览器可以合成（synthesize）哪些缺失的字体，粗体或斜体;none：不合成
   text-rendering: optimizeLegibility; //浏览器在绘制文本时将着重考虑易读性，而不是渲染速度和几何精度
 
-  
+
 }
+
 :root[theme=light] {
   --background-color: #ffffff;
   --font-color: rgba(60, 60, 67, 0.92);
-  --slider-backround: rgba(242,243,245,1);
+  --font-size: 14px;
+  --slider-backround: rgba(242, 243, 245, 1);
   --hover-menu: rgb(229, 230, 235);
-
-  color: --font-color;
+  --arrowBox: rgba(39, 46, 59, .08);
+  --hoverBgc: rgba(39, 46, 59, .08);
+  --associativeWordFloatingBackgroundColor: rgb(171, 200, 214);
+  color: var(--font-color);
 }
 
 a {
@@ -33,21 +41,71 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
+
 body {
   margin: 0;
 }
-span{
+
+span {
   display: inline-block;
 }
-ul, li,ol,li {
+
+ul,
+li,
+ol,
+li {
   list-style-type: none;
-  padding:0;
+  padding: 0;
   margin: 0
-};
-svg{
+}
+
+;
+
+svg {
   width: 1em;
   height: 1em;
+}
+
+// 滚动条样式
+*::-webkit-scrollbar {
+  width: 4px;
+  // height: 10px; // 高度写不写，都不影响，因为会根据内容的长度自动计算
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #ccc; // 滑块颜色
+  border-radius: 5px; // 滑块圆角
+}
+
+// 兼容Firefox、IE
+* {
+  scrollbar-width: 10px;
+  scrollbar-base-color: green;
+  scrollbar-track-color: red;
+  scrollbar-arrow-color: blue;
+}
+
+
+// 向前向后箭头
+.arrowBox {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  background-color: var(--hoverBgc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 .3rem;
+  cursor: pointer;
+}
+
+@media (max-width: $meidiaWidth) {
+  .arrowBox {
+    height: 32px;
+    width: 32px;
+  }
 }

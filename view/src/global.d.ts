@@ -1,6 +1,10 @@
 // 主题
 type theme = 'dark' | 'light' | null;
-
+// 联想词列表
+interface associativeWord {
+  text: string;
+  key?: string;
+}
 /**
    * 分页查询参数
    */

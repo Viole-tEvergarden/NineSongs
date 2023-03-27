@@ -9,13 +9,19 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AssociativeInput: typeof import('./../components/AssociativeInput.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
+    Header: typeof import('./../components/Header.vue')['default']
     HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
+    IEpArrowLeft: typeof import('~icons/ep/arrow-left')['default']
     IEpArrowRight: typeof import('~icons/ep/arrow-right')['default']
     IEpEdit: typeof import('~icons/ep/edit')['default']
     IEpHouse: typeof import('~icons/ep/house')['default']
+    IEpMoon: typeof import('~icons/ep/moon')['default']
+    IEpSearch: typeof import('~icons/ep/search')['default']
+    IEpSunny: typeof import('~icons/ep/sunny')['default']
     Layout: typeof import('./../components/layout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
