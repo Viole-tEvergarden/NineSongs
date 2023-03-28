@@ -6,32 +6,18 @@
   font-family: 'SmileySans';
   src: url('../assets/font/SmileySans-Oblique.ttf')
 }
-
-:root {
+:root.dark {
   --background-color: #111827;
   --font-color: #fff;
   --font-size: 14px;
-  --slider-backround: rgba(46, 46, 48, 1);//侧边菜单背景色
-  --hover-menu: rgb(72, 72, 73);//悬浮菜单背景色
-  --hoverBgc: rgba(223, 223, 223, .08);// 按钮hover背景色
-  --associativeWordFloatingBackgroundColor: rgba(255, 255, 255, .08);//联想词悬浮背景色
-
-
-  --SongSheetImgWidth: 150px;
-  --SliderWidth: 250px;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-size: var(--font-size);
-
-  color-scheme: light dark;
-  color: var(--font-color);
-
-  font-synthesis: none; //浏览器可以合成（synthesize）哪些缺失的字体，粗体或斜体;none：不合成
-  text-rendering: optimizeLegibility; //浏览器在绘制文本时将着重考虑易读性，而不是渲染速度和几何精度
+  --slider-backround: rgba(46, 46, 48, 1); //侧边菜单背景色
+  --hover-menu: rgb(72, 72, 73); //悬浮菜单背景色
+  --hoverBgc: rgba(223, 223, 223, .08); // 按钮hover背景色
+  --associativeWordFloatingBackgroundColor: rgba(255, 255, 255, .08); //联想词悬浮背景色
+  --el-bg-color:#111827
 }
 
-:root[theme=light] {
+:root{
   --background-color: #ffffff;
   --font-color: rgba(60, 60, 67, 0.92);
   --font-size: 14px;
@@ -40,7 +26,21 @@
   --arrowBox: rgba(39, 46, 59, .08);
   --hoverBgc: rgba(39, 46, 59, .08);
   --associativeWordFloatingBackgroundColor: rgb(171, 200, 214);
+}
+:root {
+  --SongSheetImgWidth: 150px;
+  --SliderWidth: 250px;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: var(--font-size);
+  font-family: 'SmileySans';
+  color-scheme: light dark;
   color: var(--font-color);
+
+  font-synthesis: none; //浏览器可以合成（synthesize）哪些缺失的字体，粗体或斜体;none：不合成
+  text-rendering: optimizeLegibility; //浏览器在绘制文本时将着重考虑易读性，而不是渲染速度和几何精度
 }
 
 a {
@@ -115,8 +115,31 @@ svg {
     height: 32px;
     width: 32px;
   }
-  :root{
+
+  :root {
     --SliderWidth: 200px;
     --SongSheetImgWidth: 100px;
   }
+}
+
+
+// element-plus 样式修改
+.el-table .el-table__cell{
+  padding: 5px 0;
+  font-size: 14px;
+}
+.el-table td.el-table__cell,
+.el-table th.el-table__cell.is-leaf{
+  border-bottom: none !important;
+}
+.el-table__inner-wrapper::before{
+  height: 0 !important;
+}
+.el-table__body,
+.el-table__footer,
+.el-table__header{
+  width: auto !important;
+}
+.el-table .cell{
+  padding: 0 4px !important;
 }

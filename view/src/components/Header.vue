@@ -28,9 +28,9 @@
       </div>
 
       <!-- 主题切换 -->
-      <div class="arrowBox" @click="store.setTheme(store.isdark ? 'light' : 'dark')">
-        <IEpSunny v-show="!store.isdark" />
-        <IEpMoon v-show="store.isdark" />
+      <div class="arrowBox" @click="toggleDark()">
+        <IEpSunny v-show="!isD" />
+        <IEpMoon v-show="isD" />
       </div>
     </div>
   </div>
@@ -41,6 +41,11 @@ import { useGlobalStore } from '@/store/index'
 import AssociativeInput from './AssociativeInput.vue'
 import { baiduSuggestion } from '../api/user/index'
 const store = useGlobalStore();
+// 深暗切换
+const isDark = useDark()
+const toggleDark = useToggle(isDark);
+const isD = computed(() => isDark.value)
+
 
 const TopMenuList = ref([
   { title: '推荐', path: '/recommend' },
@@ -102,7 +107,7 @@ const searchContent = () => {
 
 <style lang="scss" scoped>
 $menuItemPaddingLeftAndRight: 6px;
-$menuHeight: 3.75rem;
+
 
 .header {
   display: flex;

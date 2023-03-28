@@ -1,3 +1,13 @@
+<!--
+ * @Author: zhangxiaobo9794 2067838947@qq.com
+ * @Date: 2023-03-24 14:05:21
+ * @LastEditors: zhangxiaobo9794 2067838947@qq.com
+ * @LastEditTime: 2023-03-28 13:30:49
+ * @FilePath: \view\src\components\layout.vue
+ * @Description: 
+ * 
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
+-->
 <template>
   <div class="main">
     <!-- 侧边菜单 -->
@@ -30,14 +40,21 @@ import Header from "./Header.vue";
     background-color: var(--slider-backround);
     color: var(--font-color);
     padding-bottom: 100px;
+    height: 100vh;
+    box-sizing: border-box;
   }
   .containerBox{
     // flex: 1;
     width: calc(100vw - var(--SliderWidth));
     background-color: var(--background-color);
+    height: 100vh;
   }
   .container{
     padding: 1.25rem;
+    height: calc(100vh - #{$menuHeight});
+    // overflow: hidden;
+    overflow-x: scroll;
+    box-sizing: border-box;
   }
 }
 </style>
