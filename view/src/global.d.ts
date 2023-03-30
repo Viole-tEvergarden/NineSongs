@@ -2,7 +2,7 @@
  * @Author: zhangxiaobo9794 2067838947@qq.com
  * @Date: 2023-03-22 17:34:27
  * @LastEditors: zhangxiaobo9794
- * @LastEditTime: 2023-03-28 18:00:26
+ * @LastEditTime: 2023-03-30 13:20:35
  * @FilePath: \view\src\global.d.ts
  * @Description: 
  * 
@@ -38,24 +38,4 @@ interface Column {
   title: string;
   flex: string; // 不要带分号
   isA?: boolean; // 是否需要指定为 a 链接
-}
-/**
-   * 分页查询参数
-   */
-interface PageQuery {
-  pageNum: number;
-  pageSize: number;
-}
-/**
-   * 分页响应对象
-   */
-interface PageResult<T> {
-  /**
-   * 数据列表
-   */
-  list: T;
-  /**
-   * 数据总数
-   */
-  total: number;
 }

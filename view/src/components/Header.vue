@@ -37,10 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { useGlobalStore } from '@/store/index'
 import AssociativeInput from './AssociativeInput.vue'
-import { baiduSuggestion } from '../api/user/index'
-const store = useGlobalStore();
 // 深暗切换
 const isDark = useDark()
 const toggleDark = useToggle(isDark);

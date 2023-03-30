@@ -1,8 +1,8 @@
 <!--
  * @Author: zhangxiaobo9794 2067838947@qq.com
  * @Date: 2023-03-24 14:05:21
- * @LastEditors: zhangxiaobo9794 2067838947@qq.com
- * @LastEditTime: 2023-03-28 13:30:49
+ * @LastEditors: zhangxiaobo9794
+ * @LastEditTime: 2023-03-28 20:10:12
  * @FilePath: \view\src\components\layout.vue
  * @Description: 
  * 
@@ -21,12 +21,14 @@
         <RouterView></RouterView>
       </main>
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script setup lang="ts">
 import Slider from "./Slider.vue";
 import Header from "./Header.vue";
+import Footer from './MusicPlayFooter.vue'
 </script>
 
 <style lang="scss" scoped>
@@ -39,7 +41,7 @@ import Header from "./Header.vue";
     flex-shrink: 0;
     background-color: var(--slider-backround);
     color: var(--font-color);
-    padding-bottom: 100px;
+    padding-bottom: $footerHeight;
     height: 100vh;
     box-sizing: border-box;
   }
