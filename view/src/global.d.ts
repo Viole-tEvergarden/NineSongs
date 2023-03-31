@@ -2,7 +2,7 @@
  * @Author: zhangxiaobo9794 2067838947@qq.com
  * @Date: 2023-03-22 17:34:27
  * @LastEditors: zhangxiaobo9794
- * @LastEditTime: 2023-03-30 20:17:28
+ * @LastEditTime: 2023-03-31 11:49:11
  * @FilePath: \view\src\global.d.ts
  * @Description: 
  * 
@@ -40,4 +40,3 @@ interface Column {
   flex: string; // 不要带分号
   isA?: boolean; // 是否需要指定为 a 链接
 }
-console.log(Song, Column);

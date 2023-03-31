@@ -6,6 +6,7 @@
   font-family: 'SmileySans';
   src: url('../assets/font/SmileySans-Oblique.ttf')
 }
+
 :root.dark {
   --background-color: #111827;
   --font-color: #fff;
@@ -14,10 +15,10 @@
   --hover-menu: rgb(72, 72, 73); //悬浮菜单背景色
   --hoverBgc: rgba(223, 223, 223, .08); // 按钮hover背景色
   --associativeWordFloatingBackgroundColor: rgba(255, 255, 255, .08); //联想词悬浮背景色
-  --el-bg-color:#111827
+  --el-bg-color: #111827
 }
 
-:root{
+:root {
   --background-color: #ffffff;
   --font-color: rgba(60, 60, 67, 0.92);
   --font-size: 14px;
@@ -26,7 +27,10 @@
   --arrowBox: rgba(39, 46, 59, .08);
   --hoverBgc: rgba(39, 46, 59, .08);
   --associativeWordFloatingBackgroundColor: rgb(171, 200, 214);
+
+  --color: rgb(60,126,255);
 }
+
 :root {
   --SongSheetImgWidth: 150px;
   --SliderWidth: 250px;
@@ -96,6 +100,10 @@ svg {
   scrollbar-arrow-color: blue;
 }
 
+input[type="range"]{
+  outline: none;
+  margin: 0;
+}
 
 // 向前向后箭头
 .arrowBox {
@@ -124,22 +132,26 @@ svg {
 
 
 // element-plus 样式修改
-.el-table .el-table__cell{
+.el-table .el-table__cell {
   padding: 5px 0;
   font-size: 14px;
 }
+
 .el-table td.el-table__cell,
-.el-table th.el-table__cell.is-leaf{
+.el-table th.el-table__cell.is-leaf {
   border-bottom: none !important;
 }
-.el-table__inner-wrapper::before{
+
+.el-table__inner-wrapper::before {
   height: 0 !important;
 }
+
 .el-table__body,
 .el-table__footer,
-.el-table__header{
+.el-table__header {
   width: auto !important;
 }
-.el-table .cell{
+
+.el-table .cell {
   padding: 0 4px !important;
 }
