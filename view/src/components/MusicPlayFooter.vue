@@ -2,7 +2,7 @@
  * @Author: zhangxiaobo9794
  * @Date: 2023-03-28 20:02:31
  * @LastEditors: zhangxiaobo9794
- * @LastEditTime: 2023-03-30 14:38:28
+ * @LastEditTime: 2023-04-01 12:40:48
  * @FilePath: \view\src\components\MusicPlayFooter.vue
  * @Description: 
 -->
@@ -17,15 +17,18 @@
 <template>
   <footer>
     <div class="Info">
-      <div class="imgBox">
+      <div class="imgBox" @click="GlobalStore.isShowFullscreenPlay = true">
         <img src="../assets/header.jpg" alt="">
+        <div class="exclusiveMode">
+          <IEpCrop />
+        </div>
       </div>
       <div class="songInformation">
         <div class="songName">北戴河之歌</div>
         <div class="singerName">Gala</div>
       </div>
     </div>
-    <MusicPlay ref="musicCom"/>
+    <MusicPlay ref="musicCom" />
     <div class="buttonGroup">
       <div class="Icongroup">
         <div class="iconBox">
@@ -48,6 +51,8 @@
 <script setup lang="ts">
 import { useAudio } from "@/store/audioPlay";
 import MusicPlay from '@/components/MusicPlay.vue'
+import { useGlobalStore } from '@/store/index'
+const GlobalStore = useGlobalStore()
 const store = useAudio()
 const musicCom = ref();
 const setVolume = () => {
@@ -81,11 +86,37 @@ footer {
     align-items: center;
 
     .imgBox {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
       img {
         object-fit: cover;
         width: 64px;
         height: 64px;
-        border-radius: 4px;
+        vertical-align: middle;
+      }
+
+      .exclusiveMode {
+        position: absolute;
+        opacity: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(60, 60, 60, 0.44);
+        transition: opacity .5s;
+
+        svg {
+          font-size: 50px;
+        }
+      }
+
+      &:hover .exclusiveMode {
+        opacity: 1;
       }
 
       margin-right: 16px;
@@ -137,5 +168,4 @@ footer {
       }
     }
   }
-}
-</style>
+}</style>
