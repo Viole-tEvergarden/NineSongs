@@ -2,7 +2,7 @@
  * @Author: zhangxiaobo9794 2067838947@qq.com
  * @Date: 2023-03-24 14:05:21
  * @LastEditors: zhangxiaobo9794
- * @LastEditTime: 2023-03-28 20:10:12
+ * @LastEditTime: 2023-04-02 12:25:13
  * @FilePath: \view\src\components\layout.vue
  * @Description: 
  * 
@@ -22,6 +22,9 @@
       </main>
     </div>
     <Footer/>
+    <ElCollapseTransition>
+      <PlayMain v-show="store.isShowFullscreenPlay"/>
+    </ElCollapseTransition>
   </div>
 </template>
 
@@ -29,6 +32,9 @@
 import Slider from "./Slider.vue";
 import Header from "./Header.vue";
 import Footer from './MusicPlayFooter.vue'
+import PlayMain from '@/pages/PlayMain.vue'
+import { useGlobalStore } from '@/store/index'
+const store = useGlobalStore()
 </script>
 
 <style lang="scss" scoped>
