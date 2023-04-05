@@ -2,7 +2,7 @@
  * @Author: zhangxiaobo9794
  * @Date: 2023-03-22 11:01:27
  * @LastEditors: zhangxiaobo9794
- * @LastEditTime: 2023-03-29 11:06:32
+ * @LastEditTime: 2023-04-02 12:24:03
  * @FilePath: \view\src\store\index.ts
  * @Description: 
  */
@@ -12,6 +12,7 @@ import piniaPersist from 'pinia-plugin-persist';
 interface State {
   token: string,
   userInfo: any,
+  isShowFullscreenPlay: boolean
 }
 // defineStore 调用后返回一个函数，调用该函数获得 Store 实体
 export const useGlobalStore = defineStore('GlobalState',{
@@ -19,6 +20,7 @@ export const useGlobalStore = defineStore('GlobalState',{
   state: (): State => ({
     token: '',
     userInfo: {},
+    isShowFullscreenPlay: false
   }),
   actions: {
     // 不使用箭头函数

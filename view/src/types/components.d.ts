@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AssociativeInput: typeof import('./../components/AssociativeInput.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCollapseTransition: typeof import('element-plus/es')['ElCollapseTransition']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
@@ -23,6 +24,7 @@ declare module '@vue/runtime-core' {
     IEpArrowLeft: typeof import('~icons/ep/arrow-left')['default']
     IEpArrowRight: typeof import('~icons/ep/arrow-right')['default']
     IEpCaretRight: typeof import('~icons/ep/caret-right')['default']
+    IEpCrop: typeof import('~icons/ep/crop')['default']
     IEpEdit: typeof import('~icons/ep/edit')['default']
     IEpHouse: typeof import('~icons/ep/house')['default']
     IEpList: typeof import('~icons/ep/list')['default']
@@ -33,6 +35,7 @@ declare module '@vue/runtime-core' {
     IEpVideoPlay: typeof import('~icons/ep/video-play')['default']
     IEpView: typeof import('~icons/ep/view')['default']
     Layout: typeof import('./../components/layout.vue')['default']
+    Lyric: typeof import('./../components/Lyric.vue')['default']
     MusicPlay: typeof import('./../components/MusicPlay.vue')['default']
     MusicPlayFooter: typeof import('./../components/MusicPlayFooter.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
