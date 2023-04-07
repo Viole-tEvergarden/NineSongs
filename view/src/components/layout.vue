@@ -1,13 +1,3 @@
-<!--
- * @Author: zhangxiaobo9794 2067838947@qq.com
- * @Date: 2023-03-24 14:05:21
- * @LastEditors: zhangxiaobo9794
- * @LastEditTime: 2023-04-02 12:25:13
- * @FilePath: \view\src\components\layout.vue
- * @Description: 
- * 
- * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
--->
 <template>
   <div class="main">
     <!-- 侧边菜单 -->
@@ -22,9 +12,10 @@
       </main>
     </div>
     <Footer/>
-    <ElCollapseTransition>
+    <transition name="slide">
       <PlayMain v-show="store.isShowFullscreenPlay"/>
-    </ElCollapseTransition>
+    </transition>
+    
   </div>
 </template>
 
@@ -65,4 +56,18 @@ const store = useGlobalStore()
     box-sizing: border-box;
   }
 }
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.5s ease;
+}
+.slide-enter-from{
+  transform: translateY(100%);
+}
+.slide-enter-to {
+  transform: translateY(0);
+}
+.slide-leave-to {
+  transform: translateY(100%);
+}
+
 </style>
