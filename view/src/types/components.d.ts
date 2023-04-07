@@ -21,11 +21,13 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     Header: typeof import('./../components/Header.vue')['default']
     HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
+    IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']
     IEpArrowLeft: typeof import('~icons/ep/arrow-left')['default']
     IEpArrowRight: typeof import('~icons/ep/arrow-right')['default']
     IEpCaretRight: typeof import('~icons/ep/caret-right')['default']
     IEpCrop: typeof import('~icons/ep/crop')['default']
     IEpEdit: typeof import('~icons/ep/edit')['default']
+    IEpFullScreen: typeof import('~icons/ep/full-screen')['default']
     IEpHouse: typeof import('~icons/ep/house')['default']
     IEpList: typeof import('~icons/ep/list')['default']
     IEpMoon: typeof import('~icons/ep/moon')['default']
@@ -42,5 +44,6 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     Slider: typeof import('./../components/Slider.vue')['default']
     SongTable: typeof import('./../components/SongTable.vue')['default']
+    TransitionComponent: typeof import('./../components/TransitionComponent.vue')['default']
   }
 }
