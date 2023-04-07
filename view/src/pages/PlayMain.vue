@@ -3,7 +3,7 @@
     <div class="music-player_bg"></div>
     <div class="music-player__left">
       <div class="imgbox">
-        <img alt="Album cover"
+        <img alt="Album cover" :class="isPlaying ? 'zoom' : ''"
           src="https://p1.music.126.net/diGAyEmpymX8G7JcnElncQ==/109951163699673355.jpg?param=1000y1000">
       </div>
       <div class="informationArea">
@@ -16,11 +16,15 @@
         </div>
       </div>
       <div class="music-player__controls">
-        <MusicPlay />
+        <MusicPlay :isWhite="true" ref="RefMusicPlay" />
       </div>
     </div>
     <div class="music-player__right">
       <Lyric :lyrics-data="lyricsData" :currentTime="store.currentTime" />
+    </div>
+    <div class="topRightBtn">
+      <IEpArrowDown @click="Globalstore.isShowFullscreenPlay = false" />
+      <IEpFullScreen @click="toggleFullScreen()" />
     </div>
   </div>
 </template>
@@ -30,7 +34,18 @@ import MusicPlay from '@/components/MusicPlay.vue'
 import Lyric from '@/components/Lyric.vue';
 import lyricsData from '@/assets/qifeng'
 import { useAudio } from '@/store/audioPlay'
-const store = useAudio()
+import { useGlobalStore } from '@/store/index'
+import { toggleFullScreen } from '@/utils/index'
+const Globalstore = useGlobalStore()
+const store = useAudio();
+const RefMusicPlay = ref();
+let isPlaying = ref(false);
+// 获取当前音乐播放状态
+onMounted(() => {
+  isPlaying = computed(() => {
+    return RefMusicPlay.value.pauseOrPlay === 'play'
+  })
+})
 </script>
 
 <style lang="scss">
@@ -45,6 +60,27 @@ const store = useAudio()
   right: 0;
   bottom: 0;
   padding-left: 10vw;
+
+  .topRightBtn {
+    position: absolute;
+    right: 3rem;
+    top: 3rem;
+    display: flex;
+    flex-direction: column;
+
+    svg {
+      font-size: 40px;
+      margin: 10px 0;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 17px;
+
+      &:hover {
+        background-color: var(--hoverBgc);
+      }
+    }
+  }
+
   &_bg {
     background-image: url("../assets/header.jpg");
     background-size: cover;
@@ -101,6 +137,12 @@ const store = useAudio()
         object-fit: cover;
         margin-bottom: 2rem;
         border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+        transform: scale(1);
+
+        &.zoom {
+          transform: scale(1.25);
+        }
       }
     }
   }
@@ -111,6 +153,7 @@ const store = useAudio()
     flex: 0 1 50%;
     height: 100%;
     padding-left: 3rem;
+
     &__lyrics {
       height: 300px;
       overflow-y: scroll;
@@ -150,10 +193,12 @@ const store = useAudio()
     }
   }
 }
+
 @media (max-width: $meidiaWidth) {
-  .music-player{
+  .music-player {
     padding-left: 0;
   }
+
   .music-player__left {
     flex: 1 1 40%;
   }
