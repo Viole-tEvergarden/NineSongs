@@ -2,12 +2,20 @@
  * @Author: zhangxiaobo9794 2067838947@qq.com
  * @Date: 2023-03-22 17:34:27
  * @LastEditors: zhangxiaobo9794
- * @LastEditTime: 2023-03-31 11:49:11
+ * @LastEditTime: 2023-04-07 11:56:20
  * @FilePath: \view\src\global.d.ts
  * @Description: 
  * 
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
  */
+// 全局接口扩展
+interface Document {
+  fullscreenElement: Element | null;
+  webkitFullscreenElement: Element | null;
+  msFullscreenElement: Element | null;
+  webkitExitFullscreen: Function | null;
+  msExitFullscreen: Function | null;
+}
 // 联想词列表
 interface associativeWord {
   text: string;
