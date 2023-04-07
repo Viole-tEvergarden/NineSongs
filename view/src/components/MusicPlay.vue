@@ -4,13 +4,13 @@
       @durationchange="durationchangeListener"></audio>
     <div class="controlBtn">
       <button>
-        <img src="../assets/Icon/prev.svg" alt="">
+        <img :src="getIcon('prev', isWhite)" alt="">
       </button>
       <button class="pauseAndplay" @click="PauseAndPlay">
-        <img :src="getIcon(pauseOrPlay)" alt="">
+        <img :src="getIcon(pauseOrPlay, isWhite)" alt="">
       </button>
       <button>
-        <img src="../assets/Icon/next.svg" alt="">
+        <img :src="getIcon('next', isWhite)" alt="">
       </button>
     </div>
     <!-- 进度条 -->
@@ -37,7 +37,13 @@ import { secondsToMinutes } from "@/utils/index";
 const getAudio = () => new URL(`../assets/qifeng.mp3`, import.meta.url).href;
 const audio = ref();
 const store = useAudio();
-
+const props = defineProps({
+  isWhite: {
+    type: Boolean,
+    default: false
+  }
+})
+const { isWhite } = toRefs(props);
 
 let pauseOrPlay = ref('pause');
 // 播放与暂停
@@ -69,9 +75,9 @@ const progressChange = () => {
 }
 
 // 监听 setCurrentTime 的变化来设置 audio 的播放进度
-watch( 
+watch(
   () => store.setCurrentTime,
-  (val)=>{
+  (val) => {
     audio.value.currentTime = val;
     store.currentTime = val;
   }
@@ -101,7 +107,7 @@ const progressMouseEnter = () => {
 const setVolume = (volume: number) => {
   audio.value.volume = volume / 100;
 }
-defineExpose({ setVolume });
+defineExpose({ setVolume, pauseOrPlay });
 
 </script>
 
