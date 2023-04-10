@@ -24,7 +24,7 @@
     </div>
     <div class="topRightBtn">
       <IEpArrowDown @click="Globalstore.isShowFullscreenPlay = false" />
-      <IEpFullScreen @click="toggleFullScreen()" />
+      <IEpFullScreen @click="toggle()" />
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@ import Lyric from '@/components/Lyric.vue';
 import lyricsData from '@/assets/qifeng'
 import { useAudio } from '@/store/audioPlay'
 import { useGlobalStore } from '@/store/index'
-import { toggleFullScreen } from '@/utils/index'
+const { toggle } = useFullscreen();
 const Globalstore = useGlobalStore()
 const store = useAudio();
 const RefMusicPlay = ref();
