@@ -3,8 +3,9 @@ const mysql = require("mysql");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "password",
-  database: "mydb"
+  password: "1457asd!",
+  database: "ninesongs",//库名
+  port: '3306', //默认 3306
 });
 
 connection.connect((err) => {
@@ -17,18 +18,25 @@ connection.connect((err) => {
 
 // 公共函数：获取
 exports.getMusicRecommendList = async (id) => {
-  connection.query("SELECT * FROM users", (error, results, fields) => {
-    if (error) throw error;
-    console.log("Query results:", results);
-  });
-
-  connection.end((err) => {
-    if (err) {
+  return new Promise((resolve, reject) => {
+    connection.query("SELECT * FROM user", (error, results, fields) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      console.log("Query results:", results);
+      resolve(results);
+    });
+  })
+    .then((music) => {
+      console.log("Database connection closed");
+      return music;
+    })
+    .catch((err) => {
       console.error("Error closing database connection: ", err);
-      return;
-    }
-    console.log("Database connection closed");
-  });
-  return music;
+    })
+    .finally(() => {
+      connection.end();
+    });
 };
 
