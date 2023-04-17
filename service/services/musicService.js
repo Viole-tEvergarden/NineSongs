@@ -1,25 +1,8 @@
-const mysql = require("mysql");
-
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "1457asd!",
-  database: "ninesongs",//库名
-  port: '3306', //默认 3306
-});
-
-connection.connect((err) => {
-  if (err) {
-    console.error("Error connecting to database: ", err);
-    return;
-  }
-  console.log("Connected to database");
-});
-
+const connection = require('./index');
 // 公共函数：获取
 exports.getMusicRecommendList = async (id) => {
   return new Promise((resolve, reject) => {
-    connection.query("SELECT * FROM user", (error, results, fields) => {
+    connection.query("SELECT * FROM users", (error, results, fields) => {
       if (error) {
         reject(error);
         return;

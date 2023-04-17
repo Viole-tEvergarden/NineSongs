@@ -7,6 +7,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const musicListController = require("./Controller/musicList");
+const userController = require("./Controller/user");
 const app = express();
 
 app.use(bodyParser.json());
@@ -17,7 +18,12 @@ app.get("/", (req, res) => {
   console.log(req.query);
   res.send("Hello World!");
 });
-app.use("/music", musicListController.getMusicRecommendList);
+app.get("/music", musicListController.getMusicRecommendList);
+app.post("/register", userController.register);
+app.post("/login", userController.login);
+
+
+
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
