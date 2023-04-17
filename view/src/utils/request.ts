@@ -2,6 +2,8 @@ import axios, { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import { useGlobalStore } from '@/store/index';
 
 // 创建 axios 实例
+console.log(import.meta.env.VITE_APP_BASE_API);
+
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 50000,
