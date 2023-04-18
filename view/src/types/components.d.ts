@@ -20,6 +20,7 @@ declare module '@vue/runtime-core' {
     ElSlider: typeof import('element-plus/es')['ElSlider']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Header: typeof import('./../components/Header.vue')['default']
     HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
     IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']

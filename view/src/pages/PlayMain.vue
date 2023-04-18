@@ -11,9 +11,12 @@
           <div class="title">起风了(原版)</div>
           <div class="singer">买辣椒也用券</div>
         </div>
-        <div class="arrowBox">
-          <IEpMore />
-        </div>
+        <ElTooltip class="box-item" effect="dark" content="功能暂未开放" placement="right-start">
+          <div class="arrowBox">
+            <IEpMore />
+          </div>
+        </ElTooltip>
+
       </div>
       <div class="music-player__controls">
         <MusicPlay :isWhite="true" ref="RefMusicPlay" />
