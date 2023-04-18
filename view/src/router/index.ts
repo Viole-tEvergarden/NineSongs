@@ -20,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/main',
         name: 'main',
         component: () => import("@/pages/main.vue"),
+      },
+      { //个人中心
+        path: '/personCenter',
+        name: 'personCenter',
+        component: () => import("@/pages/personCenter.vue"),
       }
     ],
   },

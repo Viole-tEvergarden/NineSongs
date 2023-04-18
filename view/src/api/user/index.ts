@@ -39,3 +39,15 @@ export function userLogin(data: any) {
     data: data
   });
 }
+
+/**
+ * 用户登录
+ *
+ * @param data
+ */
+export function userLogout() {
+  return request({
+    url: '/logout',
+    method: 'post'
+  });
+}

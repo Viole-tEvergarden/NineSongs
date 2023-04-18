@@ -5,9 +5,8 @@
         <form>
           <h2 class="title">创建账户</h2>
           <span class="text">用邮箱或者用户名</span>
-          <input class="form__input" v-model="registerForm.userName" type="text" placeholder="账户名" />
-          <input class="form__input" v-model="registerForm.email" type="text" placeholder="邮箱" />
-          <input class="form__input" v-model="registerForm.password" type="password" placeholder="密码" />
+          <input class="form__input" v-model="loginForm.username" type="text" placeholder="账户名" />
+          <input class="form__input" v-model="loginForm.password" type="password" placeholder="密码" />
           <div class="primary-btn" @click="register">立即注册</div>
         </form>
       </div>
@@ -15,7 +14,7 @@
         <form>
           <h2 class="title">登录 NineSongs</h2>
           <span class="text">用邮箱或者用户名</span>
-          <input class="form__input" v-model="loginForm.emailOrUserName" type="text" placeholder="邮箱/账户名" />
+          <input class="form__input" v-model="loginForm.username" type="text" placeholder="邮箱/账户名" />
           <input class="form__input" v-model="loginForm.password" type="password" placeholder="密码" />
           <div class="primary-btn" @click="login">立即登录</div>
         </form>
@@ -47,43 +46,39 @@ import { useGlobalStore } from "@/store/index";
 const useGlobal = useGlobalStore();
 const isLogin = ref(true);
 const router = useRouter();
-const regEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const regPass = /[a-zA-Z0-9]{6,16}/;
 const regUser = /^[a-zA-Z0-9_-]{4,16}$/;
 const loginForm = reactive({
-  emailOrUserName: '',
+  username: '',
   password: '',
 });
-const registerForm = reactive({
-  userName: '',
-  email: '',
-  password: '',
-})
+
 const login = async () => {
   if (!checkLogin()) return;
   // 处理登录逻辑
   try {
-    const { msg, token } = await userLogin({ ...loginForm })
+    const { msg, token, data } = await userLogin({ ...loginForm })
     ElMessage.success(msg);
     useGlobal.token = token;
+    useGlobal.userInfo = data;
     router.push('/');
   } catch (error) {
     console.log(error);
   }
 }
 const register = async () => {
-  if (!checkRegister()) return
+  if (!checkLogin()) return
   try {
-    const { msg } = await addUser({ ...registerForm })
+    const { msg } = await addUser({ ...loginForm })
     ElMessage.success(msg);
   } catch (error) {
     console.log(error);
   }
 }
-// 校验登录
+// 校验表单
 const checkLogin = (): boolean => {
-  const { emailOrUserName, password } = loginForm;
-  if ((check(emailOrUserName, regEmail) || check(emailOrUserName, regUser))) {
+  const { username, password } = loginForm;
+  if (check(username, regUser)) {
     if (check(password, regPass)) {
       return true;
     } else {
@@ -91,26 +86,9 @@ const checkLogin = (): boolean => {
       return false;
     }
   } else {
-    ElMessage.error('请输入正确的邮箱或者账户名');
-    return false;
-  }
-}
-// 校验注册
-const checkRegister = (): boolean => {
-  const { userName, password, email } = registerForm;
-  if (!check(email, regEmail)) {
-    ElMessage.error('请输入正确的邮箱');
-    return false;
-  }
-  if (!check(userName, regUser)) {
     ElMessage.error('请输入正确的账户名');
     return false;
   }
-  if (!check(password, regPass)) {
-    ElMessage.error('请输入6位以上16位以下只有英文或数字的密码');
-    return false;
-  }
-  return true;
 }
 /**
  * @description: 校验
@@ -195,6 +173,7 @@ const check = (value: string, reg: RegExp): boolean => {
         background-color: #ecf0f3;
         transition: 0.25s ease;
         border-radius: 8px;
+        color: #181818;
         box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
 
         &::placeholder {

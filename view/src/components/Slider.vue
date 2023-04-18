@@ -1,8 +1,8 @@
 <template>
   <div class="topHe">
     <img class="headerImg" src="../assets/header.jpg" alt="">
-    <div class="infobox">
-      {{ cofj }}
+    <div class="infobox" @click="router.push('/personCenter')">
+      {{ store.userInfo.username || '未登录'}}
       <IEpArrowRight/>
     </div>
   </div>
@@ -16,8 +16,9 @@
 
 <script setup lang="ts">
 import { House, Stopwatch, Setting, List } from '@element-plus/icons-vue';
+import { useGlobalStore } from '@/store/index';
+const store = useGlobalStore()
 const router = useRouter();
-const cofj = ref('cofj');
 const menuList = ref([
   { title: '首页', icon: markRaw(House), path: '/' },
   { title: '探索', icon: markRaw(Stopwatch), path: '/explore' },

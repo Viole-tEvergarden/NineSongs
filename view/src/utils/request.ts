@@ -15,7 +15,7 @@ service.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const userStore = useGlobalStore();
     if (userStore.token) {
-      config.headers.Authorization = userStore.token;
+      config.headers.token = userStore.token;
     }
     return config;
   },
