@@ -1,7 +1,5 @@
 <template>
   <div class="player">
-    <!-- <audio :src="getAudio()" ref="audio" @timeupdate="timeupdateListener"
-      @durationchange="durationchangeListener"></audio> -->
     <div class="controlBtn">
       <button>
         <img :src="getIcon('prev', isWhite)" alt="">
