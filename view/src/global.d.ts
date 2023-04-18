@@ -2,7 +2,7 @@
  * @Author: zhangxiaobo9794 2067838947@qq.com
  * @Date: 2023-03-22 17:34:27
  * @LastEditors: zhangxiaobo9794
- * @LastEditTime: 2023-04-07 11:56:20
+ * @LastEditTime: 2023-04-17 16:10:02
  * @FilePath: \view\src\global.d.ts
  * @Description: 
  * 

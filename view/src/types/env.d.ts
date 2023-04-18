@@ -13,3 +13,13 @@ interface ImportMetaEnv {
   VITE_APP_PORT: string;
   VITE_APP_BASE_API: string;
 }
+// axios返回数据类型
+import * as axios from 'axios';
+declare module 'axios' {
+  export interface AxiosResponse<T> {
+    code: string;
+    msg: string;
+    data?: T;
+    [keys: string]: any;
+  }
+}

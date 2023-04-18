@@ -1,6 +1,6 @@
 import request from '@/utils/request';
 import { AxiosPromise } from 'axios';
-import { UserInfo } from './types';
+import { Response } from './types';
 
 /**
  * 百度联想搜索词
@@ -33,8 +33,6 @@ export function addUser(data: any) {
  * @param data
  */
 export function userLogin(data: any) {
-  console.log(data);
-  
   return request({
     url: '/login',
     method: 'post',

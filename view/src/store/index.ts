@@ -2,7 +2,7 @@
  * @Author: zhangxiaobo9794
  * @Date: 2023-03-22 11:01:27
  * @LastEditors: zhangxiaobo9794
- * @LastEditTime: 2023-04-02 12:24:03
+ * @LastEditTime: 2023-04-17 16:16:13
  * @FilePath: \view\src\store\index.ts
  * @Description: 
  */
@@ -24,12 +24,7 @@ export const useGlobalStore = defineStore('GlobalState',{
   }),
   actions: {
     // 不使用箭头函数
-    setToken(token: string) {
-      this.token = token;
-    },
-    setUserIngo(userInfo: any) {
-      this.userInfo = userInfo;
-    },
+  
   },
   // 持久化
   persist: {

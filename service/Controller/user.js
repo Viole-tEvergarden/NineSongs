@@ -2,6 +2,7 @@
 const userService = require("../services/user");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { v4 } = require('uuid');
 // 注册用户
 exports.register = async (req, res, next) => {
   try {
@@ -39,15 +40,37 @@ exports.login = async (req, res, next) => {
     const data = await userService.searchUser(req.body.username);
     data.on('result', async (user) => {
       const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
+      // 比较密码
       if (!isPasswordValid) {
-        return res.status(401).send('Incorrect password');
+        return res.status(401).send({
+          code: '00001',
+          msg: '密码错误'
+        });
       }
-
-      const sessionId = uuidv4();
-      await connection.execute(`INSERT INTO sessions (user_id, session_id) VALUES (?, ?) ON DUPLICATE KEY UPDATE session_id=?`, [user.id, sessionId, sessionId]);
-
-      const token = jwt.sign({ userId: user.id, sessionId }, 'SECRET_KEY');
-      res.header('auth-token', token).send(token);
+      // 判断是否已经在 seesion表中
+      await userService.searchUserInsession(user.id, async (error, rows) => {
+        if (rows.length>0) {
+          res.status(200).send({
+            code: '00000',
+            msg: '用户已登录',
+          });
+        } else {
+          const sessionId = v4();
+          // 添加到 seesion表
+          await userService.userToSessin(user.id, sessionId, sessionId);
+          // 生成token
+          const token = jwt.sign({ userId: user.id, sessionId }, 'SECRET_KEY');
+          res.header('auth-token', token).send({
+            code: '00000',
+            msg: '登录成功',
+            token,
+            data: {
+              userId: user.id,
+              username: user.username
+            }
+          });
+        }
+      })
     })
 
   } catch (error) {

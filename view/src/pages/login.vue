@@ -4,27 +4,38 @@
       <input class="login-input" type="text" placeholder="请输入用户名" v-model="username" />
       <input class="login-input" type="password" placeholder="请输入密码" v-model="password" />
       <button class="login-button" type="submit">登录</button>
+      <button class="login-button" @click="register">注册</button>
     </form>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { userLogin, addUser } from "@/api/user/index";
+import { useGlobalStore } from "@/store/index";
+const useGlobal= useGlobalStore();
 let username = ref('');
 let password = ref('');
 
 const handleLogin = async () => {
   // 处理登录逻辑
   try {
-    // const data = await userLogin({
-    //   username: username.value,
-    //   password: password.value
-    // })
-    const data = await addUser({
+    const {msg, token} = await userLogin({
       username: username.value,
       password: password.value
     })
-    console.log(data);
+    ElMessage.success(msg);
+    useGlobal.token = token;
+  } catch (error) {
+    console.log(error);
+  }
+}
+const register = async () => {
+  try {
+    const { msg } = await addUser({
+      username: username.value,
+      password: password.value
+    })
+    ElMessage.success(msg);
   } catch (error) {
     console.log(error);
   }
