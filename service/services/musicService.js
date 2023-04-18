@@ -1,4 +1,4 @@
-const connection = require('./index');
+
 // 公共函数：获取
 exports.getMusicRecommendList = async (id) => {
   return new Promise((resolve, reject) => {
