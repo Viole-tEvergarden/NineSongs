@@ -43,7 +43,7 @@ let isPlaying = ref(false);
 // 获取当前音乐播放状态
 onMounted(() => {
   isPlaying = computed(() => {
-    return RefMusicPlay.value.pauseOrPlay === 'play'
+    return store.pauseOrPlay === 'play'
   })
 })
 </script>
@@ -112,7 +112,7 @@ onMounted(() => {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      padding: 2rem 0;
+      padding: 3rem 0 2rem;
 
       .title {
         font-size: 1.25rem;

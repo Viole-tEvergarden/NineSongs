@@ -1,13 +1,13 @@
 <template>
   <div class="player">
-    <audio :src="getAudio()" ref="audio" @timeupdate="timeupdateListener"
-      @durationchange="durationchangeListener"></audio>
+    <!-- <audio :src="getAudio()" ref="audio" @timeupdate="timeupdateListener"
+      @durationchange="durationchangeListener"></audio> -->
     <div class="controlBtn">
       <button>
         <img :src="getIcon('prev', isWhite)" alt="">
       </button>
       <button class="pauseAndplay" @click="PauseAndPlay">
-        <img :src="getIcon(pauseOrPlay, isWhite)" alt="">
+        <img :src="getIcon(store.pauseOrPlay, isWhite)" alt="">
       </button>
       <button>
         <img :src="getIcon('next', isWhite)" alt="">
@@ -33,9 +33,7 @@
 import { useAudio } from "@/store/audioPlay";
 import { getIcon } from '../utils/index'
 import { secondsToMinutes } from "@/utils/index";
-// 音乐文件
-const getAudio = () => new URL(`../assets/qifeng.mp3`, import.meta.url).href;
-const audio = ref();
+
 const store = useAudio();
 const props = defineProps({
   isWhite: {
@@ -45,43 +43,24 @@ const props = defineProps({
 })
 const { isWhite } = toRefs(props);
 
-let pauseOrPlay = ref('pause');
 // 播放与暂停
 const PauseAndPlay = () => {
-  if (pauseOrPlay.value === 'play') {
-    pauseOrPlay.value = 'pause';
-    audio.value.pause()
+  if (store.pauseOrPlay === 'play') {
+    store.pauseOrPlay = 'pause';
   } else {
-    pauseOrPlay.value = 'play';
-    audio.value.play();
+    store.pauseOrPlay = 'play';
   }
 }
 
 
 /**进度条相关*/
 const progress = ref();
-const timeupdateListener = () => {
-  //元素的currentTime属性表示的时间已经改变。
-  store.currentTime = audio.value.currentTime.toFixed(2) - 0;
-}
-const durationchangeListener = () => {
-  //元信息已载入或已改变，表明媒体的长度发生了改变
-  store.payload = Math.trunc(audio.value.duration);
-}
+
 // 进度条被拖动或点击
 const progressChange = () => {
-  // 直接改变 audio 的播放进度触发 timeupdateListener 事件去修改 store 中的值
-  audio.value.currentTime = (progress.value.value - 0).toFixed(2);
+  store.setCurrentTime = +(progress.value.value - 0).toFixed(2);
 }
 
-// 监听 setCurrentTime 的变化来设置 audio 的播放进度
-watch(
-  () => store.setCurrentTime,
-  (val) => {
-    audio.value.currentTime = val;
-    store.currentTime = val;
-  }
-)
 
 // 进度条悬浮显示时间进度
 let isShowToolip = ref(false);
@@ -101,14 +80,6 @@ const progressMouseEnter = () => {
     }
   })
 }
-
-
-// 设置音量
-const setVolume = (volume: number) => {
-  audio.value.volume = volume / 100;
-}
-defineExpose({ setVolume, pauseOrPlay });
-
 </script>
 
 <style lang="scss" scoped>

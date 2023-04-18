@@ -10,6 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AssociativeInput: typeof import('./../components/AssociativeInput.vue')['default']
+    Audio: typeof import('./../components/Audio.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCollapseTransition: typeof import('element-plus/es')['ElCollapseTransition']
     ElDivider: typeof import('element-plus/es')['ElDivider']

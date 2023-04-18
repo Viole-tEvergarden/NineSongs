@@ -2,7 +2,7 @@
  * @Author: zhangxiaobo9794
  * @Date: 2023-03-28 20:02:31
  * @LastEditors: zhangxiaobo9794
- * @LastEditTime: 2023-04-01 12:40:48
+ * @LastEditTime: 2023-04-18 10:42:38
  * @FilePath: \view\src\components\MusicPlayFooter.vue
  * @Description: 
 -->
@@ -15,6 +15,7 @@
  * @Description: 
 -->
 <template>
+  <Audio />
   <footer>
     <div class="Info">
       <div class="imgBox" @click="GlobalStore.isShowFullscreenPlay = true">
@@ -38,7 +39,7 @@
           <img src="../assets/Icon/loopAll.svg" alt="">
         </div>
         <div class="voice">
-          <ElSlider v-model="store.$state.volume" @change="setVolume" />
+          <ElSlider v-model="store.$state.volume" />
         </div>
         <div class="iconBox">
           <IEpList />
@@ -51,18 +52,10 @@
 <script setup lang="ts">
 import { useAudio } from "@/store/audioPlay";
 import MusicPlay from '@/components/MusicPlay.vue'
+import Audio from "@/components/Audio.vue";
 import { useGlobalStore } from '@/store/index'
 const GlobalStore = useGlobalStore()
 const store = useAudio()
-const musicCom = ref();
-const setVolume = () => {
-  musicCom.value.setVolume(store.volume)
-}
-onMounted(() => {
-  // 根据本地记录设置音量
-  setVolume()
-})
-
 </script>
 
 <style lang="scss" scoped>
@@ -90,6 +83,7 @@ footer {
       border-radius: 4px;
       overflow: hidden;
       cursor: pointer;
+
       img {
         object-fit: cover;
         width: 64px;
@@ -168,4 +162,5 @@ footer {
       }
     }
   }
-}</style>
+}
+</style>

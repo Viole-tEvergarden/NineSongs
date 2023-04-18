@@ -17,6 +17,7 @@
 import { defineStore } from 'pinia';
 interface State {
   volume: number; //音量
+  pauseOrPlay: 'pause' | 'play'; //播放状态
   currentTime: number; //当前播放进度
   payload: number;//总时长
   setCurrentTime: number;//其他组件需要更改播放进度时改这项值为 currentTime; 播放组件中会监听这个值来设置 audio 标签的播放进度同时同步 currentTime 的值
@@ -26,6 +27,7 @@ export const useAudio = defineStore('audio', {
   // state: 返回对象的函数
   state: (): State => ({
     volume: 50,
+    pauseOrPlay: 'pause',
     currentTime: 0,
     setCurrentTime: 0,
     payload: 0
