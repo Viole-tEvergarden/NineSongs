@@ -22,6 +22,7 @@ exports.register = async (req, res, next) => {
         await userService.registerUser(req.body.username, hashedPassword)
 
         res.status(200).send({
+          code: '00000',
           msg: '注册成功'
         });
       } catch (error) {
@@ -56,10 +57,11 @@ exports.login = async (req, res, next) => {
           });
         } else {
           const sessionId = v4();
-          // 添加到 seesion表
-          await userService.userToSessin(user.id, sessionId, sessionId);
           // 生成token
           const token = jwt.sign({ userId: user.id, sessionId }, 'SECRET_KEY');
+          // 添加到 seesion表
+          await userService.userToSessin(user.id, sessionId, token);
+
           res.header('auth-token', token).send({
             code: '00000',
             msg: '登录成功',
@@ -73,6 +75,20 @@ exports.login = async (req, res, next) => {
       })
     })
 
+  } catch (error) {
+    console.error(error);
+    res.status(500).send();
+  }
+}
+// 用户登出
+exports.logout = async (req, res, next) => {
+  try {
+    console.log(req.headers.token);
+    await userService.deleteUserInsession(req.headers.token);
+    res.status(200).send({
+      code: '00000',
+      msg: '登出成功'
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send();
