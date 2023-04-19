@@ -1,25 +1,36 @@
+const db = require('../services/index');
+class MusicService {
+  async addMusic({ songTitle, singer, album, coverImageId, musicFileId, lyricFileId }) {
+    let connection;
+    try {
+      connection = await db.getConnection();
 
-// 公共函数：获取
-exports.getMusicRecommendList = async (id) => {
-  return new Promise((resolve, reject) => {
-    connection.query("SELECT * FROM users", (error, results, fields) => {
-      if (error) {
-        reject(error);
-        return;
+      const sql = 'INSERT INTO musicInfoList (songTitle, singer, album, coverImageId, musicFileId, lyricFileId) VALUES(?, ?, ?, ?, ?, ?)'
+      const result = await connection.query(sql, [songTitle, singer, album, coverImageId, musicFileId, lyricFileId]);
+      return result;
+    } catch (error) {
+      throw error;
+    } finally {
+      if (connection) {
+        connection.release();
       }
-      console.log("Query results:", results);
-      resolve(results);
-    });
-  })
-    .then((music) => {
-      console.log("Database connection closed");
-      return music;
-    })
-    .catch((err) => {
-      console.error("Error closing database connection: ", err);
-    })
-    .finally(() => {
-      connection.end();
-    });
-};
+    }
+  };
+}
+module.exports = new MusicService();
 
+  // 新增歌曲
+  //  async addMusic(connection, { songTitle, singer, album, coverImageId, musicFileId, lyricFileId }){
+  //   return new Promise((resolve, reject) => {
+  //     const sql = 'INSERT INTO musicInfoList (songTitle, singer, album, coverImageId, musicFileId, lyricFileId) VALUES(?, ?, ?, ?, ?, ?)'
+  //     connection.query(sql, [songTitle, singer, album, coverImageId, musicFileId, lyricFileId], (error, results) => {
+  //       connection.release()
+  //       console.log(error);
+  //       if (error) {
+  //         reject(error);
+  //         return;
+  //       }
+  //       resolve(results);
+  //     });
+  //   })
+  // };

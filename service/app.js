@@ -19,7 +19,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-const musicListController = require("./Controller/musicList");
 const userController = require("./Controller/user");
 const uploadController = require("./Controller/upload");
 const app = express();
@@ -27,16 +26,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("combined"));
-
+const musicRoute = require("./routes/musicRoute");
+app.use("/music", musicRoute);
 // 连接数据库函数
 const { handleRequest } = require('./services/index');
 // 接口监听
-app.get("/music", musicListController.getMusicRecommendList);
 app.post("/register", (req, res) => handleRequest(req, res, userController.register));
 app.post("/login", (req, res) => handleRequest(req, res, userController.login));
 app.post("/logout", (req, res) => handleRequest(req, res, userController.logout));
 app.post('/upload', upload.single('file'), (req, res) => handleRequest(req, res, uploadController.upload));// 处理POST /upload请求，上传附件
-
+// app.post('/addMusic', (req, res) => handleRequest(req, res, musicListController.addMusic));
 
 app.listen(3000, () => {
   console.log("服务启动, 端口号:3000");

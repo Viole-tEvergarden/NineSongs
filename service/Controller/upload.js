@@ -4,6 +4,7 @@ exports.upload = async (req, res, conn) => {
   const file = req.file;
   // 将文件信息保存到数据库中
   const data = await uploadService.insertFile(conn,file);
+  console.log(data);
   if (data.insertId) {
     res.send({
       code: '00000',
