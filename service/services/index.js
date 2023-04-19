@@ -1,3 +1,4 @@
+const { log } = require("console");
 const mysql = require("mysql");
 const util = require('util');
 
@@ -10,5 +11,5 @@ const pool = mysql.createPool({
 });
 
 
-pool.query = util.promisify(pool.query);
+pool.getConnection = util.promisify(pool.getConnection);
 module.exports = pool;

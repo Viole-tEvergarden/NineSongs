@@ -22,7 +22,7 @@ export function baiduSuggestion(value: string) {
  */
 export function addUser(data: any) {
   return request({
-    url: '/register',
+    url: '/user/register',
     method: 'post',
     data: data
   });
@@ -34,7 +34,7 @@ export function addUser(data: any) {
  */
 export function userLogin(data: any) {
   return request({
-    url: '/login',
+    url: '/user/login',
     method: 'post',
     data: data
   });
@@ -47,7 +47,7 @@ export function userLogin(data: any) {
  */
 export function userLogout() {
   return request({
-    url: '/logout',
+    url: '/user/logout',
     method: 'post'
   });
 }

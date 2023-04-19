@@ -1,14 +1,12 @@
 const musicService = require("../services/musicService");
 
 class MusicController {
-  async addMusic(req, res, conn) {
+  async addMusic(req, res) {
     try {
       const data = await musicService.addMusic(req.body);
-      console.log('成功',data);
       res.json({
         code: '00000',
-        msg: "提交成功",
-        data: data
+        msg: "提交成功"
       });
     } catch (error) {
       console.error(error)

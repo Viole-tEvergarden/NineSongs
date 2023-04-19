@@ -5,37 +5,22 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 // 这个模块是一个 Express 中间件，用于打印 HTTP 请求的日志。它提供了多种日志格式和配置选项，方便调试和故障排除。
 const morgan = require("morgan");
-// 用于处理 HTTP POST 请求中的 multipart / form - data 数据，也就是用于处理表单（form）数据，并可以上传文件
-const multer = require('multer');
 
-// 设置上传文件目录和文件名
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, new Date().getTime() + '-' + encodeURIComponent(file.originalname));
-  }
-});
-const upload = multer({ storage: storage });
 
-const userController = require("./Controller/user");
-const uploadController = require("./Controller/upload");
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("combined"));
+
+
+// 路由挂载
 const musicRoute = require("./routes/musicRoute");
+const uploadRoute = require("./routes/uploadRoute");
+const userRoute = require("./routes/userRoute");
 app.use("/music", musicRoute);
-// 连接数据库函数
-const { handleRequest } = require('./services/index');
-// 接口监听
-app.post("/register", (req, res) => handleRequest(req, res, userController.register));
-app.post("/login", (req, res) => handleRequest(req, res, userController.login));
-app.post("/logout", (req, res) => handleRequest(req, res, userController.logout));
-app.post('/upload', upload.single('file'), (req, res) => handleRequest(req, res, uploadController.upload));// 处理POST /upload请求，上传附件
-// app.post('/addMusic', (req, res) => handleRequest(req, res, musicListController.addMusic));
+app.use("/upload", uploadRoute);
+app.use("/user", userRoute);
 
 app.listen(3000, () => {
   console.log("服务启动, 端口号:3000");
