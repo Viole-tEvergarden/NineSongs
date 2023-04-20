@@ -14,6 +14,9 @@ app.use(cors());
 app.use(morgan("combined"));
 
 
+// 设置静态文件目录
+app.use(express.static('uploads'));
+
 // 路由挂载
 const musicRoute = require("./routes/musicRoute");
 const uploadRoute = require("./routes/uploadRoute");
@@ -25,3 +28,6 @@ app.use("/user", userRoute);
 app.listen(3000, () => {
   console.log("服务启动, 端口号:3000");
 });
+
+// 全局常量
+global.API_BASE_URL = 'http://localhost:3000';

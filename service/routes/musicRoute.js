@@ -3,8 +3,8 @@ const MusicController = require("../Controller/music");
 // const { handleRequest } = require('../services/index');
 const router = express.Router();
 
-// router.get('/', musicListController.getList);
-router.post('/addMusic', MusicController.addMusic);
+router.get('/musicList', MusicController.findAllMusic);
+// router.post('/addMusic', MusicController.addMusic);
 // router.put('/:id', UserController.update);
 // router.delete('/:id', UserController.delete);
 

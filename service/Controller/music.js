@@ -16,6 +16,23 @@ class MusicController {
         data: error
       });
     }
+  };
+  findAllMusic = async (req, res)=>{
+    try {
+      const data = await musicService.findAllMusic();
+      res.status(200).send({
+        code: '00000',
+        msg: "查询成功",
+        data
+      });
+    } catch (error) {
+      console.error(error)
+      res.status(500).json({
+        code: '500',
+        msg: "提交失败",
+        data: error
+      });
+    }
   }
 }
 module.exports = new MusicController();

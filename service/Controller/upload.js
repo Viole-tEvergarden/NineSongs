@@ -5,20 +5,21 @@ class UploadController {
     const file = req.file;
     try {
       const result = await FileService.insertFile(file);
+      console.log(result.code);
       res.send({
-        code: '00000',
-        msg: "上传成功",
+        code: result.code || '00000',
+        msg: result.msg || "上传成功",
         data: {
-          insertId: result.insertId
+          id: result.insertId
         }
       });
     } catch (error) {
       console.error(error)
       res.status(500).json({
         code: '500',
-        msg: "插入数据库错误",
-        data
+        msg: error
       });
+      
     }
   }
 }
