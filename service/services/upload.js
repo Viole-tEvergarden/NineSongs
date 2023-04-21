@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const myUtils = require('../utils/typeJudgment');
 const _path = path;
+const { implementSql } = require('./implementSql.js');
 class FileService {
   insertFile = async ({ filename, path, mimetype }) => {
     let connection;
@@ -32,25 +33,19 @@ class FileService {
             console.log('图片成功保存, 路径:', imagePath);
           });
         } 
-        
-
-        
 
         // 连接数据库 并插入数据
-        connection = await db.getConnection();
-        connection.query = util.promisify(connection.query);
-        const sql = 'INSERT INTO musiclist SET ?'
-        const result = await connection.query(sql, { title, path, artist, mimetype, duration, Lyric, image: imgUrl, album });
+        implementSql(sql, { title, path, artist, mimetype, duration, Lyric, image: imgUrl, album });
 
-        result.code = '00000';
+        result.code = 200;
         result.msg = '上传成功';
         // 判断文件中是否含有歌词与封面图 提示用户
         if (!Lyric) {
-          result.code = '00005';
+          result.code = '201';
           result.msg = '该音乐文件中不包含歌词文件';
         }
         if (!image) {
-          result.code = '00005';
+          result.code = '202';
           result.msg = '该音乐文件中不包含歌曲封面';
         }
         return result;

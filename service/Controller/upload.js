@@ -7,7 +7,7 @@ class UploadController {
       const result = await FileService.insertFile(file);
       console.log(result.code);
       res.send({
-        code: result.code || '00000',
+        code: result.code || 200,
         msg: result.msg || "上传成功",
         data: {
           id: result.insertId

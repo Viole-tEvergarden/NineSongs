@@ -67,7 +67,7 @@ class UserController {
         await UserService.userToSessin(result[0].id, sessionId, token);
 
         res.header('auth-token', token).send({
-          code: '00000',
+          code: 200,
           msg: '登录成功',
           token,
           data: {
@@ -78,7 +78,7 @@ class UserController {
     } catch (error) {
       console.log(error);
       res.status(500).send({
-        code: '50001',
+        code: 500,
         msg: '服务器错误',
         error
       });
@@ -88,7 +88,7 @@ class UserController {
     try {
       await userService.deleteUserInsession(req.headers.token);
       res.status(200).send({
-        code: '00000',
+        code: 200,
         msg: '登出成功'
       });
     } catch (error) {
